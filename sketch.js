@@ -44,9 +44,9 @@ function draw(){
 background("red");
 
 if(cat.x-rat.x<(cat.width-rat.width)/2){
-    //cat.velocityX=0;
+    cat.velocityX=0;
     cat.addAnimation("catLooking",cat3);
-    cat.x=150;
+    cat.x=230;
     cat.changeAnimation("catLooking");
     rat.addAnimation("ratSearching",rat3);
     rat.changeAnimation("ratSearching");
@@ -57,7 +57,7 @@ if(cat.x-rat.x<(cat.width-rat.width)/2){
 
 drawSprites();
 }
- function keypressed(){
+ function keyPressed(){
      if(keyCode===LEFT_ARROW){
          cat.velocityX=-5;
          cat.addAnimation("catRunning",cat2);
