@@ -1,6 +1,7 @@
 var backGround,backgroundImage;
-var cat,catImage,mouse,mouseImage;
-var catRunningimage;
+var cat,rat;
+var cat1,cat2,cat3;
+var rat1,rat2,rat3;
 
 
 
@@ -9,9 +10,16 @@ var catRunningimage;
 function preload(){
 
 backgroundImage=loadImage("garden.png");
-catImage=loadImage("tomOne.png");
-mouseImage=loadImage("jerryOne.png");
-catRunningimage = loadImage("tomTwo.png");
+cat1=loadAnimation("tomOne.png");
+cat2 = loadAnimation("tomTwo.png","tomThree.png");
+cat3 = loadAnimation("tomFour.png");
+
+rat1=loadAnimation("jerryOne.png");
+rat2 = loadAnimation("jerryTwo.png","jerryThree.png");
+rat3 = loadAnimation("jerryFour.png");
+
+
+
 }
 function setup(){
     createCanvas(1000,700);
@@ -20,27 +28,43 @@ function setup(){
     backGround.addImage(backgroundImage);
     backGround.scale = 1.03;
 
-    cat = createSprite(500,630,20,20);
-    cat.addImage(catImage);
+    cat = createSprite(850,630,20,20);
+    cat.addAnimation("catSitting",cat1);
     cat.scale=0.1;
 
-    mouse = createSprite(150,630,20,20);
-    mouse.addImage(mouseImage);
-    mouse.scale=0.125;
+    rat = createSprite(150,630,20,20);
+    rat.addAnimation("ratHolding",rat1);
+    rat.scale=0.125;
 
-    keypressed();
+   
 
 }
 
 function draw(){
 background("red");
+
+if(cat.x-rat.x<(cat.width-rat.width)/2){
+    //cat.velocityX=0;
+    cat.addAnimation("catLooking",cat3);
+    cat.x=150;
+    cat.changeAnimation("catLooking");
+    rat.addAnimation("ratSearching",rat3);
+    rat.changeAnimation("ratSearching");
+
+}
+
+
+
 drawSprites();
 }
  function keypressed(){
      if(keyCode===LEFT_ARROW){
          cat.velocityX=-5;
-         cat.addAnimation(catRunningimage,"catRunning");
+         cat.addAnimation("catRunning",cat2);
          cat.changeAnimation("catRunning");
+
+         rat.addAnimation("ratTeasing",rat2);
+         rat.changeAnimantion("ratTeasing");
          
      }
  }
